@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tecsup.minishop.dto.ProductRequestDTO;
 import com.tecsup.minishop.model.Product;
 import com.tecsup.minishop.service.ProductService;
 
@@ -25,9 +26,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> create(@RequestBody Product product) {
+    public ResponseEntity<Product> create(@RequestBody ProductRequestDTO request) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(productService.save(product));
+                .body(productService.save(request.toEntity()));
     }
 
     @GetMapping
